@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
                 FileLoader.with(getApplicationContext())
                         .load("https://firebasestorage.googleapis.com/v0/b/lisoloapp-project.appspot.com/o/HowToTalkToAnyone.epub?alt=media&token=501988db-291e-4a19-84ff-d6b571ba3b3d",false)
-                        .fromDirectory("Documents", FileLoader.DIR_EXTERNAL_PUBLIC)
+                        .fromDirectory("Android/data/com.jachtech.lisoloapp/cache", FileLoader.DIR_EXTERNAL_PUBLIC)
                         .asFile(new FileRequestListener<File>() {
                             @Override
                             public void onLoad(FileLoadRequest request, FileResponse<File> response) {
@@ -163,8 +163,10 @@ public class MainActivity extends AppCompatActivity
                         });
                 break;
             case 7:
-                startActivity(new Intent(MainActivity.this, PDFReaderActivity.class));
-                //displayFromAsset("sample.pdf");
+                Intent intent = new Intent(MainActivity.this, PDFReaderActivity.class);
+                String pdfBookTitle = "sample.pdf";
+                intent.putExtra("PDF_BOOK_FILE", pdfBookTitle);
+                startActivity(intent);
                 break;
             default: break;
         }

@@ -1,5 +1,6 @@
 package com.hts.demo.ebookreader;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -30,7 +31,9 @@ public class PDFReaderActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_reader);
         pdfView = findViewById(R.id.pdfView);
-        displayFromAsset("sample.pdf");
+        Intent intent = getIntent();
+        String pdfBookFileName = intent.getStringExtra("PDF_BOOK_FILE");
+        displayFromAsset(pdfBookFileName);
     }
 
     private void displayFromAsset(String assetFileName) {
