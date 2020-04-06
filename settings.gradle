@@ -1,0 +1,2 @@
+include ':app', ':shelfview'
+rootProject.name='Ebook Reader'

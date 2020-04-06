@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:npb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+  <TextView
+      android:id="@+id/book_cover_id_tv"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:visibility="gone"
+      />
+  <RelativeLayout
+      android:id="@+id/book_background_rly"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="visible"
+      >
+
+    <RelativeLayout
+        android:id="@+id/book_cover_rly"
+        android:layout_width="@dimen/book_width"
+        android:layout_height="@dimen/book_height"
+        android:visibility="gone"
+        >
+
+      <ImageView
+          android:id="@+id/book_cover_imv"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_centerHorizontal="true"
+          android:background="@android:color/darker_gray"
+          android:scaleType="fitXY"
+          />
+
+      <TextView
+          android:id="@+id/book_cover_not_found_tv"
+          android:layout_width="@dimen/book_width"
+          android:layout_height="@dimen/book_height"
+          android:layout_centerInParent="true"
+          android:gravity="center"
+          android:text="NO IMAGE FOUND"
+          android:visibility="gone"
+          />
+
+      <View
+          android:id="@+id/spine_white_view"
+          android:layout_width="2dp"
+          android:layout_height="match_parent"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true"
+          android:background="@drawable/book_spine_white_blend"
+          />
+
+      <View
+          android:id="@+id/spine_grey_view"
+          android:layout_width="2dp"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="1dp"
+          android:layout_marginStart="1dp"
+          android:layout_toEndOf="@+id/spine_white_view"
+          android:layout_toRightOf="@id/spine_white_view"
+          android:background="@drawable/book_spine_grey_blend"
+          />
+
+      <com.rilixtech.numberprogressbar.NumberProgressBar
+          android:id="@+id/book_cover_read_progress_npb"
+          android:layout_alignParentBottom="true"
+          android:background="#8e050505"
+          npb:npb_reached_color="#fcce00"
+          npb:npb_text_color="#fcce00"
+          npb:npb_text_size="12sp"
+          android:padding="2dp"
+          npb:npb_unreached_color="#CCCCCC"
+          style="@style/NumberProgressBar_Beauty_Red"
+          android:visibility="gone"
+          />
+
+    </RelativeLayout>
+  </RelativeLayout>
+
+  <ProgressBar
+      android:id="@+id/load_pgb"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:visibility="gone"
+      />
+</FrameLayout>

@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.gitlab.joielechong'
+version = '2.3.5'
+
+android {
+  compileSdkVersion 29
+  buildToolsVersion '29.0.3'
+
+  defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 29
+    versionCode 236
+    versionName version
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  testImplementation 'junit:junit:4.12'
+  implementation 'com.squareup.picasso:picasso:2.71828'
+  api 'com.gitlab.joielechong:numberprogressbar:1.4.4@aar'
+}

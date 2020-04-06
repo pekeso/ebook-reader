@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="ShelfView">
+    <attr format="string" name="shv_no_image_found"/>
+    <attr format="boolean" name="shv_title_as_placeholder"/>
+  </declare-styleable>
+</resources>
