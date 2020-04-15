@@ -21,6 +21,7 @@ import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.krishna.fileloader.FileLoader;
+import com.krishna.fileloader.builder.FileLoaderBuilder;
 import com.krishna.fileloader.listener.FileRequestListener;
 import com.krishna.fileloader.pojo.FileResponse;
 import com.krishna.fileloader.request.FileLoadRequest;
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity
                 "How To Talk To Anyone"));
         books.add(ShelfBook.createBookWithAsset("book_cover_6.jpg", "8",
                 "PDF Book"));
+        books.add(ShelfBook.createBookWithAsset("book_cover_9.jpg", "9",
+                "PDF Book Online"));
         shelfView.loadBooks(books);
 
         //onBookClicked(1, "1", "TheSilverChair.epub");
@@ -167,6 +170,27 @@ public class MainActivity extends AppCompatActivity
                 String pdfBookTitle = "sample.pdf";
                 intent.putExtra("PDF_BOOK_FILE", pdfBookTitle);
                 startActivity(intent);
+                break;
+            case 8:
+                FileLoader.with(getApplicationContext())
+                        .load("https://faculty.washington.edu/stiber/pubs/Signal-Computing/Signal%20Computing.pdf", false)
+                        .fromDirectory("Android/data/com.jachtech.lisoloapp/cache", FileLoader.DIR_EXTERNAL_PUBLIC)
+                        .asFile(new FileRequestListener<File>() {
+                            @Override
+                            public void onLoad(FileLoadRequest request, FileResponse<File> response) {
+                                File pdfFile = response.getBody();
+                                String filePath = pdfFile.getPath();
+                                Intent intent = new Intent(MainActivity.this, PDFReaderActivity.class);
+                                intent.putExtra("PDF_BOOK_FILE", pdfFile);
+                                startActivity(intent);
+                                Toast.makeText(MainActivity.this, "Titre: " + filePath, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(FileLoadRequest request, Throwable t) {
+                                Toast.makeText(MainActivity.this, "PDF Error: "+ t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 break;
             default: break;
         }
